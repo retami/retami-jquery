@@ -1,0 +1,447 @@
+@use "sass:color";
+
+$hint-button-color: rgba(58, 41, 30);
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #124f10;
+}
+
+#game-board {
+  display: flex;
+  width: min-content;
+  min-width: 360px;
+  margin: 30px auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+
+  background-color: #a26d45;
+  color: $hint-button-color;
+
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  padding: 0 10px;
+}
+
+.config-button, .help-button, .quit-button, .hint-button, .check-button, .start-button, .playing {
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(155, 110, 80);
+  color: $hint-button-color;
+  font-size: 14px;
+  border: 1px solid rgba($hint-button-color, 0.8);
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: default;
+    background-color: rgb(255, 255, 255, 0.15);
+
+    &:hover {
+      background-color: rgb(255, 255, 255, 0.15);
+    }
+  }
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.config-button, .help-button, .quit-button, .hint-button, .check-button, .start-button {
+  &:hover {
+    background-color: rgb(255, 255, 255, 0.15);
+  }
+}
+
+.check-button, .start-button {
+  margin-top: 2em;
+  padding: 0.5em 3em;
+  width: max-content;
+  align-self: center;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.playing {
+  display: inline-block;
+  min-width: 7em;
+  text-align: center;
+}
+
+#guesses {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+
+  .guess-holes {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+  }
+
+  .feedback-holes {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    height: 50px;
+  }
+}
+
+.hint-button-container, .feedback-holes {
+  width: 80px;
+  margin-left: 20px;
+}
+
+.hint-button-container .hint-button {
+  width: min-content;
+}
+
+
+.feedback-holes {
+  flex-wrap: wrap;
+}
+
+#secret-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0 0 0;
+}
+
+.code-row, .guess-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px 0;
+
+  -webkit-box-shadow: 0 4px 6px -6px #000;
+  -moz-box-shadow: 0 4px 6px -6px #000;
+  box-shadow: 0 4px 6px -6px #000;
+}
+
+.code-hole, .guess-hole {
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-hole {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin: 0 2px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  backdrop-filter: brightness(0.75);
+}
+
+.feedback-spacer {
+  flex-basis: 100%;
+  height: 0;
+}
+
+.code-hole {
+  backdrop-filter: brightness(0.7);
+
+  &.covered {
+    background: url('../img/secret.png');
+    background-size: contain;
+  }
+}
+
+.guess-hole {
+  backdrop-filter: brightness(0.7);
+  cursor: pointer;
+
+  &:hover {
+    backdrop-filter: brightness(0.8);
+  }
+
+  &.disabled {
+    cursor: default;
+
+    &:hover {
+      backdrop-filter: brightness(0.7);
+    }
+  }
+}
+
+.hint-button {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.black-feedback {
+  background-color: #252525;
+}
+
+.white-feedback {
+  background-color: #d6d6d6;
+}
+
+
+.color-picker {
+  display: none;
+
+  &.visible {
+    display: flex;
+    justify-content: center;
+    z-index: 4;
+    position: absolute;
+  }
+}
+
+.color-option {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  cursor: pointer;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+
+  .modal-button {
+    font-weight: bold;
+    margin-top: 0.8em;
+    padding: 5px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    backdrop-filter: brightness(0.75);
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+      backdrop-filter: brightness(0.9);
+    }
+  }
+}
+
+#help-modal, #config-modal, #quit-modal, #lost-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  margin: 10% auto;
+  padding: 10px 20px;
+
+  text-align: center;
+
+  border: 2px solid #503929;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background-color: #a26d45;
+
+  line-height: 1.5em;
+
+  max-width: 300px;
+}
+
+.win-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+
+  margin: 10% auto;
+  padding: 10px 20px;
+
+  border: 1px solid #e8d720;
+  border-radius: 10px;
+  box-shadow: 0 0 2px 2px rgb(231, 214, 32, 0.2);
+  background-color: #ffeb3b;
+  color: #f55e01;
+
+  font-weight: bold;
+
+
+  .title {
+    margin-right: 10px;
+    font-size: 1.6em;
+    line-height: 1.9em;
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5em;
+    font-size: 1.2em;
+    line-height: 1.5em;
+
+    .left {
+      clear: both;
+      float: left;
+      padding-right: 3em;
+    }
+
+    .right {
+      padding-left: 3em;
+      float: right;
+      text-align: right;
+    }
+  }
+
+  .modal-button {
+    color: #f55e01;
+    background-color: #fdea3b;
+    border: 1px solid #f45e02;
+
+    &:hover {
+      background-color: #ffffff;
+    }
+  }
+}
+
+#config_dialog {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 80px 30px 220px;
+  grid-template-rows: 3em 3em 3em;
+  grid-column-gap: 0;
+  grid-row-gap: 0;
+
+
+  #config_colors_slider {
+    grid-row: 1;
+    grid-column: 3;
+  }
+
+  #config_pins_slider {
+    grid-row: 2;
+    grid-column: 3;
+  }
+
+  #config_guesses_slider {
+    grid-row: 3;
+    grid-column: 3;
+  }
+
+  #colors_label {
+    grid-row: 1;
+    grid-column: 1;
+    text-align: right;
+  }
+
+  #pins_label {
+    grid-row: 2;
+    grid-column: 1;
+    text-align: right;
+  }
+
+  #guesses_label {
+    grid-row: 3;
+    grid-column: 1;
+    text-align: right;
+  }
+
+  #config_colors_text {
+    grid-row: 1;
+    grid-column: 2;
+  }
+
+  #config_pins_text {
+    grid-row: 2;
+    grid-column: 2;
+  }
+
+  #config_guesses_text {
+    grid-row: 3;
+    grid-column: 2;
+  }
+
+  #config_colors_slider, #config_pins_slider, #config_guesses_slider {
+    -webkit-appearance: none;
+    height: 3px;
+    border: 1px solid #34251b;
+    background-color: #503929;
+    outline: none;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+
+    display: inline-block;
+    width: 180px;
+    margin-left: 20px;
+
+    .ui-slider-handle {
+      width: 15px;
+      height: 15px;
+      background-color: #503929;
+      border: 1px solid #34251b;
+      border-radius: 50%;
+      cursor: pointer;
+      top: -7px;
+    }
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  body {
+    margin: 0;
+    background-color: #a26d45;
+  }
+
+  #game-board {
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  #guesses .feedback-holes {
+    margin-left: 10px;
+  }
+  .hint-button-container {
+    margin-left: 10px;
+  }
+  .code-hole, .guess-hole {
+    width: 35px;
+    height: 35px;
+  }
+
+  .header {
+    margin: 0;
+  }
+
+  #help-modal, #config-modal, #quit-modal, #lost-modal, #win-modal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+  }
+}

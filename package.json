@@ -1,0 +1,20 @@
+{
+  "name": "retami",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "cypress:open": "cypress open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.8.1"
+  },
+  "dependencies": {
+    "jquery": "^3.6.4",
+    "jquery-ui": "^1.13.2"
+  }
+}
