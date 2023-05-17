@@ -155,7 +155,7 @@ export default class Board {
         }
     });
 
-    playing = Object.create(this.hideable, {
+    playingInfo = Object.create(this.hideable, {
         qualifier: {value: '.playing'},
         init: {
             value: function () {
@@ -185,7 +185,7 @@ export default class Board {
         this.configButton.enable();
         this.hintButton.disable();
         this.quitButton.hide();
-        this.playing.hide();
+        this.playingInfo.hide();
         this.guessRow.initRows(this.game.maxAttempts, this.game.numberOfPins);
         this.secretHoles.init(this.game.numberOfPins);
     }
@@ -200,8 +200,8 @@ export default class Board {
         this.hintButton.enable();
         this.configButton.disable();
         this.quitButton.show();
-        this.playing.init();
-        this.playing.show();
+        this.playingInfo.init();
+        this.playingInfo.show();
         this.secretHoles.set(secret);
     }
 
@@ -214,6 +214,6 @@ export default class Board {
         this.startButton.show();
         this.configButton.enable();
         this.quitButton.hide();
-        this.playing.hide();
+        this.playingInfo.hide();
     }
 }
