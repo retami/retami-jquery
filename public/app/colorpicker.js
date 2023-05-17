@@ -2,12 +2,19 @@ const ColorPicker = (function () {
 
     let selectedColorButton = null;
     let callback = null;
+
     function show(e) {
         selectedColorButton = e.target;
         let colorPicker = document.querySelector('.color-picker');
         colorPicker.classList.toggle('visible');
-        colorPicker.style.top = (selectedColorButton.getBoundingClientRect().y + selectedColorButton.getBoundingClientRect().height / 2) + 'px';
-        colorPicker.style.left = (selectedColorButton.getBoundingClientRect().x + selectedColorButton.getBoundingClientRect().width / 2) + 'px';
+
+        let rect = selectedColorButton.getBoundingClientRect();
+        let viewport = window.visualViewport;
+
+        // https://developer.chrome.com/blog/visual-viewport-api/
+        colorPicker.style.top = Math.round(viewport.pageTop + rect.y + rect.height / 2) + 'px';
+        colorPicker.style.left = Math.round(viewport.pageLeft + rect.x + rect.width / 2) + 'px';
+
         e.stopPropagation();
     }
 
@@ -20,8 +27,8 @@ const ColorPicker = (function () {
             coloroption.classList.add("color-option");
             coloroption.classList.add("color-" + i);
             coloroption.style.backgroundColor = colors[i - 1];
-            let x = Math.floor(Math.cos(2 * (i - 1) / colors.length * Math.PI ) * 40 - 17);
-            let y = Math.floor(Math.sin(2 * (i - 1) / colors.length * Math.PI ) * 40 - 17);
+            let x = Math.floor(Math.cos(2 * (i - 1) / colors.length * Math.PI) * 40 - 17);
+            let y = Math.floor(Math.sin(2 * (i - 1) / colors.length * Math.PI) * 40 - 17);
             coloroption.style.top = x + "px";
             coloroption.style.left = y + "px";
             coloroption.addEventListener('click', (e) => {
@@ -29,30 +36,30 @@ const ColorPicker = (function () {
                 colorpicker.classList.toggle('visible');
                 e.stopPropagation();
             });
-            if(callback !== null) {
+            if (callback !== null) {
                 coloroption.addEventListener('click', callback);
             }
             colorpicker.appendChild(coloroption);
         }
 
-        document.addEventListener('click', function(e) {
-            if(colorpicker.classList.contains('visible')) {
+        document.addEventListener('click', function (e) {
+            if (colorpicker.classList.contains('visible')) {
                 colorpicker.classList.toggle('visible');
                 e.stopPropagation();
             }
         });
 
-        if(document.querySelector('.color-picker') !== null){
+        if (document.querySelector('.color-picker') !== null) {
             document.querySelector('.color-picker').remove();
         }
         document.body.appendChild(colorpicker);
     }
 
     return {
-        init: function(colors, callback = null) {
+        init: function (colors, callback = null) {
             init(colors, callback);
         },
-        show: function(e) {
+        show: function (e) {
             show(e);
         }
     };
