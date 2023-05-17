@@ -8,6 +8,7 @@ const ColorPicker = (function () {
         colorPicker.classList.toggle('visible');
         colorPicker.style.top = (selectedColorButton.getBoundingClientRect().y + selectedColorButton.getBoundingClientRect().height / 2) + 'px';
         colorPicker.style.left = (selectedColorButton.getBoundingClientRect().x + selectedColorButton.getBoundingClientRect().width / 2) + 'px';
+        e.stopPropagation();
     }
 
     function init(colors, callbackArg = null) {
@@ -26,12 +27,21 @@ const ColorPicker = (function () {
             coloroption.addEventListener('click', (e) => {
                 selectedColorButton.style.backgroundColor = window.getComputedStyle(e.target).backgroundColor;
                 colorpicker.classList.toggle('visible');
+                e.stopPropagation();
             });
             if(callback !== null) {
                 coloroption.addEventListener('click', callback);
             }
             colorpicker.appendChild(coloroption);
         }
+
+        document.addEventListener('click', function(e) {
+            if(colorpicker.classList.contains('visible')) {
+                colorpicker.classList.toggle('visible');
+                e.stopPropagation();
+            }
+        });
+
         if(document.querySelector('.color-picker') !== null){
             document.querySelector('.color-picker').remove();
         }
