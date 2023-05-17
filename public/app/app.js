@@ -34,7 +34,7 @@ const App = (function () {
         board.checkButton.bind(handleCheckClick);
         board.hintButton.bind(handleHintClick);
         board.quitButton.bind(handleQuitClick);
-        board.config.bind(config);
+        board.configModal.bind(config);
     }
 
     function handleStartClick() {

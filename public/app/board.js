@@ -141,11 +141,11 @@ export default class Board {
         }
     }
 
-
     hintButton = Object.create(this.disableable, {qualifier: {value: '.hint-button'}});
     checkButton = Object.create(this.disableable, {qualifier: {value: '.check-button'}});
     configButton = Object.create(this.disableable, {qualifier: {value: '.config-button'}});
     quitButton = Object.create(this.disableable, {qualifier: {value: '.quit-button'}});
+
     startButton = Object.create(this.disableable, {
         qualifier: {value: '.start-button'},
         bind: {
@@ -154,6 +154,7 @@ export default class Board {
             }
         }
     });
+
     playing = Object.create(this.hideable, {
         qualifier: {value: '.playing'},
         init: {
@@ -164,9 +165,7 @@ export default class Board {
     });
 
     endModal = EndModal;
-
-    config = ConfigModal;
-
+    configModal = ConfigModal;
     helpModal = HelpModal;
 
     game = null;
@@ -182,7 +181,7 @@ export default class Board {
                 this.checkButton.enable();
             }
         });
-        this.configButton.bind(() => this.config.show(this.game));
+        this.configButton.bind(() => this.configModal.show(this.game));
         this.configButton.enable();
         this.hintButton.disable();
         this.quitButton.hide();
