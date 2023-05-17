@@ -16,7 +16,7 @@ const App = (function () {
     let game = {
         numberOfColors: 5,
         numberOfPins: 4,
-        maxAttempts: 8,
+        maxAttempts: 7,
         colors: colors,
         getColors: function () {
             return this.colors.slice(0, this.numberOfColors);
