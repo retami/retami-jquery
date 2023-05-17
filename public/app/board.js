@@ -60,7 +60,9 @@ export default class Board {
         },
 
         show() {
-            $(".code-hole").removeClass('covered');
+            $(".code-hole").removeClass('covered').each(function () {
+                $(this).css('background-color', $(this).data('color'));
+            });
         },
 
         hide() {
@@ -86,7 +88,7 @@ export default class Board {
                 for (let i = 0; i < numberOfPins; i++) {
                     $("<div>", {"class": "guess-hole"}).appendTo(guessHoles).addClass('disabled');
                     $("<div>", {"class": "feedback-hole"}).appendTo(feedbackHoles);
-                    if(numberOfPins === 2 && i === 0 || numberOfPins === 3 && i === 1 ||
+                    if (numberOfPins === 2 && i === 0 || numberOfPins === 3 && i === 1 ||
                         numberOfPins === 4 && i === 1 || numberOfPins === 5 && i === 2 || numberOfPins === 6 && i === 2) {
                         $("<div>", {"class": "feedback-spacer"}).appendTo(feedbackHoles);
                     }
