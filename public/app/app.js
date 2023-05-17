@@ -30,13 +30,13 @@ const App = (function () {
     function run() {
         board = new Board();
         board.init(game);
+        board.startButton.bind(handleStartClick);
         board.checkButton.bind(handleCheckClick);
-        board.startButton.bind(play);
-        board.quitButton.bind(quit);
+        board.quitButton.bind(handleQuitClick);
         board.config.bind(config);
     }
 
-    function play() {
+    function handleStartClick() {
         attempts = 0;
         secret.generateSecret(game.getColors(), game.numberOfPins);
         board.setStatePlaying(secret);
@@ -60,6 +60,12 @@ const App = (function () {
         board.guessRow.activateNextRow();
     }
 
+    function handleQuitClick() {
+        board.setStateGameOver();
+        Timer.stop();
+        board.endModal.quit();
+    }
+
     function endGame(won) {
         board.setStateGameOver();
         Timer.stop();
@@ -68,12 +74,6 @@ const App = (function () {
         } else {
             board.endModal.lost();
         }
-    }
-
-    function quit() {
-        board.setStateGameOver();
-        Timer.stop();
-        board.endModal.quit();
     }
 
     function config() {
