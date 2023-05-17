@@ -130,13 +130,8 @@ export default class Board {
         },
 
         showFeedback(blackPins, whitePins) {
-            const feedbackHoles = $('.current .feedback-hole');
-
-            for (let i = 0; i < blackPins; i++) {
-                feedbackHoles.eq(i).addClass('black-feedback');
-            }
-            for (let i = 0; i < whitePins; i++) {
-                feedbackHoles.eq(blackPins + i).addClass('white-feedback');
+            for (let feedback = $('.current .feedback-hole'), i= 0; i < blackPins + whitePins; i++) {
+                feedback.eq(i).addClass(i < blackPins ? 'black-feedback' : 'white-feedback');
             }
         }
     }
@@ -145,15 +140,7 @@ export default class Board {
     checkButton = Object.create(this.disableable, {qualifier: {value: '.check-button'}});
     configButton = Object.create(this.disableable, {qualifier: {value: '.config-button'}});
     quitButton = Object.create(this.disableable, {qualifier: {value: '.quit-button'}});
-
-    startButton = Object.create(this.disableable, {
-        qualifier: {value: '.start-button'},
-        bind: {
-            value: function (callable) {
-                $('.start-button').on('click', callable);
-            }
-        }
-    });
+    startButton = Object.create(this.disableable, {qualifier: {value: '.start-button'}});
 
     playingInfo = Object.create(this.hideable, {
         qualifier: {value: '.playing'},
