@@ -70,7 +70,7 @@ export default class Board {
         },
 
         hint() {
-            if(! this.toHint()) {
+            if (!this.toHint()) {
                 return;
             }
             let candidates = $('.code-hole.covered');
@@ -130,26 +130,25 @@ export default class Board {
         },
 
         showFeedback(blackPins, whitePins) {
-            for (let feedback = $('.current .feedback-hole'), i= 0; i < blackPins + whitePins; i++) {
+            for (let feedback = $('.current .feedback-hole'), i = 0; i < blackPins + whitePins; i++) {
                 feedback.eq(i).addClass(i < blackPins ? 'black-feedback' : 'white-feedback');
             }
         }
     }
 
-    hintButton = Object.create(this.disableable, {qualifier: {value: '.hint-button'}});
-    checkButton = Object.create(this.disableable, {qualifier: {value: '.check-button'}});
-    configButton = Object.create(this.disableable, {qualifier: {value: '.config-button'}});
-    quitButton = Object.create(this.disableable, {qualifier: {value: '.quit-button'}});
-    startButton = Object.create(this.disableable, {qualifier: {value: '.start-button'}});
+    hintButton = {__proto__: this.disableable, qualifier: '.hint-button'};
+    checkButton = {__proto__: this.disableable, qualifier: '.check-button'};
+    configButton= {__proto__: this.disableable, qualifier: '.config-button'};
+    quitButton= {__proto__: this.disableable, qualifier: '.quit-button'};
+    startButton = {__proto__: this.disableable, qualifier: '.start-button'};
 
-    playingInfo = Object.create(this.hideable, {
-        qualifier: {value: '.playing'},
-        init: {
-            value: function () {
-                $('.playing').html('Playing... <span id="seconds"></span>');
-            }
+    playingInfo = {
+        __proto__: this.hideable,
+        qualifier: '.playing',
+        init() {
+            $('.playing').html('Playing... <span id="seconds"></span>');
         }
-    });
+    };
 
     endModal = EndModal;
     configModal = ConfigModal;
