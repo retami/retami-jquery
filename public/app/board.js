@@ -70,11 +70,18 @@ export default class Board {
         },
 
         hint() {
+            if(! this.toHint()) {
+                return;
+            }
             let candidates = $('.code-hole.covered');
             let randomIndex = Math.floor(Math.random() * candidates.length);
             let candidate = candidates.eq(randomIndex);
             candidate.css('background-color', candidate.data('color'));
             candidate.removeClass('covered');
+        },
+
+        toHint() {
+            return $('.code-hole.covered').length > 1;
         }
     }
 
@@ -165,7 +172,6 @@ export default class Board {
     game = null;
 
     constructor() {
-        this.hintButton.bind(this.secretHoles.hint);
         $('.help-button').on('click', () => this.helpModal.show());
     }
 

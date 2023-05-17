@@ -32,6 +32,7 @@ const App = (function () {
         board.init(game);
         board.startButton.bind(handleStartClick);
         board.checkButton.bind(handleCheckClick);
+        board.hintButton.bind(handleHintClick);
         board.quitButton.bind(handleQuitClick);
         board.config.bind(config);
     }
@@ -58,6 +59,13 @@ const App = (function () {
         }
 
         board.guessRow.activateNextRow();
+    }
+
+    function handleHintClick() {
+        board.secretHoles.hint();
+        if(! board.secretHoles.toHint()) {
+            board.hintButton.disable();
+        }
     }
 
     function handleQuitClick() {
