@@ -26,10 +26,11 @@ export default class Board {
             if (this.callable !== null) {
                 $(this.qualifier).off('click', this.callable);
             }
-            this.callable = () => {
+            this.callable = (e) => {
                 if (this.active) {
-                    callable();
+                    callable(e);
                 }
+                e.stopPropagation();
             }
             $(this.qualifier).on('click', this.callable)
         },
@@ -136,10 +137,11 @@ export default class Board {
         }
     }
 
+    helpButton = {__proto__: this.disableable, qualifier: '.help-button'};
     hintButton = {__proto__: this.disableable, qualifier: '.hint-button'};
     checkButton = {__proto__: this.disableable, qualifier: '.check-button'};
-    configButton= {__proto__: this.disableable, qualifier: '.config-button'};
-    quitButton= {__proto__: this.disableable, qualifier: '.quit-button'};
+    configButton = {__proto__: this.disableable, qualifier: '.config-button'};
+    quitButton = {__proto__: this.disableable, qualifier: '.quit-button'};
     startButton = {__proto__: this.disableable, qualifier: '.start-button'};
 
     playingInfo = {
@@ -157,7 +159,7 @@ export default class Board {
     game = null;
 
     constructor() {
-        $('.help-button').on('click', () => this.helpModal.show());
+        this.helpButton.bind(() => this.helpModal.show());
     }
 
     init(game) {

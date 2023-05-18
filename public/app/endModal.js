@@ -1,7 +1,7 @@
 const EndModal = (function () {
 
     return {
-        wonHtml: `<div class="win-modal">
+        wonHtml: `<div id="win-modal">
                         <div class="title">You won!</div>
                         <div class="content">
                             <div class="left">
@@ -17,7 +17,6 @@ const EndModal = (function () {
                                 <span id="score_pins"></span><br/>
                             </div>
                         </div>
-                    <div class="modal-button">OK</div>
                     </div>`,
 
         won: function (attempts, colors, pins, time) {
@@ -30,39 +29,37 @@ const EndModal = (function () {
             $('#score_time').html(time);
 
             modal.css('display', 'block');
-            $('.modal-button').on('click', () => {
+            $(document).one('click', function (ev) {
                 modal.css('display', 'none');
-                $('.modal-button').off('click');
+                ev.stopPropagation();
             });
         },
 
         lostHtml: `<div id="lost-modal">
             <div class="title">You lost!</div>
-            <div class="modal-button">OK</div>
             </div>`,
 
         lost: function () {
             let modal = $('.modal');
             modal.html(this.lostHtml);
             modal.css('display', 'block');
-            $('.modal-button').on('click', () => {
+            $(document).one('click', function (ev) {
                 modal.css('display', 'none');
-                $('.modal-button').off('click');
+                ev.stopPropagation();
             });
         },
 
         quitHtml: `<div id="quit-modal">
             <div class="title">You quit!</div>
-            <div class="modal-button">OK</div>
             </div>`,
 
         quit() {
             let modal = $('.modal');
             modal.html(this.quitHtml);
             modal.css('display', 'block');
-            $('.modal-button').on('click', () => {
+            $(document).one('click', function (ev) {
                 modal.css('display', 'none');
-                $('.modal-button').off('click');
+                ev.stopPropagation();
             });
         },
     };

@@ -215,15 +215,16 @@ body {
   font-weight: bold;
   margin-top: 0.8em;
   padding: 5px 10px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  backdrop-filter: brightness(0.75);
-  color: rgba(0, 0, 0, 0.3);
+  background-color: #9b6e50;
+  color: #3a291e;
+  border: 1px solid rgba(58, 41, 30, 0.8);
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
   font-size: 16px;
   cursor: pointer;
 }
 .modal .modal-button:hover {
-  backdrop-filter: brightness(0.9);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 #help-modal, #config-modal, #quit-modal, #lost-modal {
@@ -240,10 +241,11 @@ body {
   border-radius: 10px;
   background-color: #a26d45;
   line-height: 1.5em;
+  min-width: 200px;
   max-width: 300px;
 }
 
-.win-modal {
+#win-modal {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -258,12 +260,12 @@ body {
   color: #f55e01;
   font-weight: bold;
 }
-.win-modal .title {
+#win-modal .title {
   margin-right: 10px;
   font-size: 1.6em;
   line-height: 1.9em;
 }
-.win-modal .content {
+#win-modal .content {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -271,23 +273,15 @@ body {
   font-size: 1.2em;
   line-height: 1.5em;
 }
-.win-modal .content .left {
+#win-modal .content .left {
   clear: both;
   float: left;
   padding-right: 3em;
 }
-.win-modal .content .right {
+#win-modal .content .right {
   padding-left: 3em;
   float: right;
   text-align: right;
-}
-.win-modal .modal-button {
-  color: #f55e01;
-  background-color: #fdea3b;
-  border: 1px solid #f45e02;
-}
-.win-modal .modal-button:hover {
-  background-color: #ffffff;
 }
 
 #config_dialog {

@@ -236,15 +236,18 @@ body {
     font-weight: bold;
     margin-top: 0.8em;
     padding: 5px 10px;
-    border: 1px solid rgba(0, 0, 0, 0.3);
+
     border-radius: 10px;
-    backdrop-filter: brightness(0.75);
-    color: rgba(0, 0, 0, 0.3);
+    background-color: rgb(155, 110, 80);
+    color: $hint-button-color;
+    border: 1px solid rgba($hint-button-color, 0.8);
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+
     font-size: 16px;
     cursor: pointer;
 
     &:hover {
-      backdrop-filter: brightness(0.9);
+      background-color: rgb(255, 255, 255, 0.15);
     }
   }
 }
@@ -267,16 +270,16 @@ body {
 
   line-height: 1.5em;
 
+  min-width: 200px;
   max-width: 300px;
 }
 
-.win-modal {
+#win-modal {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: max-content;
-
   margin: 10% auto;
   padding: 10px 20px;
 
@@ -313,16 +316,6 @@ body {
       padding-left: 3em;
       float: right;
       text-align: right;
-    }
-  }
-
-  .modal-button {
-    color: #f55e01;
-    background-color: #fdea3b;
-    border: 1px solid #f45e02;
-
-    &:hover {
-      background-color: #ffffff;
     }
   }
 }
