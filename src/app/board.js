@@ -1,3 +1,4 @@
+import $ from "jquery";
 import Colorpicker from "./colorpicker.js";
 import ConfigModal from "./configModal.js";
 import EndModal from "./endModal.js";

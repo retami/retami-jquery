@@ -1,3 +1,4 @@
+import $ from "jquery";
 import Timer from "./timer.js";
 import Board from "./board.js";
 import Secret from "./secret.js";

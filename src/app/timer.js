@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 const Timer = (function () {
     let timer = null;
     let view = null;

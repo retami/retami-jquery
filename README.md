@@ -6,7 +6,7 @@ Clone of a popular game
 
 ### To play:
 
-Clone the repo and start your server pointing to the public folder, e.g.
+Clone the repo and start your server pointing to the **dist** folder, e.g.
 ```
 php -S localhost:8000 -t ./dist
 ```

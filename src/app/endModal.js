@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 const EndModal = (function () {
 
     return {

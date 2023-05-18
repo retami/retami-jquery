@@ -1,13 +1,52 @@
+import $ from "jquery";
+import "jquery-ui/ui/widgets/slider";
+
 const ConfigModal = (function () {
 
     return {
         callable: null,
+
         bind(callable) {
             this.callable = callable;
         },
-        show: function(game) {
+
+        show: function (game) {
             let config = $('.modal');
             config.html(this.html(game));
+
+            $("#config_colors_slider").slider({
+                value: game.numberOfColors,
+                min: 2,
+                max: 7,
+                step: 1,
+                slide: function (event, ui) {
+                    $("#config_colors").val(ui.value);
+                    $("#config_colors_text").text(ui.value);
+                }
+            });
+
+            $("#config_pins_slider").slider({
+                value: game.numberOfPins,
+                min: 2,
+                max: 5,
+                step: 1,
+                slide: function (event, ui) {
+                    $("#config_pins").val(ui.value);
+                    $("#config_pins_text").text(ui.value);
+                }
+            });
+
+            $("#config_guesses_slider").slider({
+                value: game.maxAttempts,
+                min: 2,
+                max: 12,
+                step: 1,
+                slide: function (event, ui) {
+                    $("#config_guesses").val(ui.value);
+                    $("#config_guesses_text").text(ui.value);
+                }
+            });
+
             config.css('display', 'block');
             $('.modal-button').on('click', () => {
                 this.callable();
@@ -15,7 +54,7 @@ const ConfigModal = (function () {
                 $('.modal-button').off('click');
             });
         },
-        html: function(game) {
+        html: function (game) {
             return `<div id='config-modal'>
                 <div id='config_dialog'>
                 <label id='colors_label'>Colors: </label>
@@ -36,45 +75,7 @@ const ConfigModal = (function () {
                 </form>
                 </div>
                 <div class="modal-button">OK</div>
-                  <script>
-                  $( function() {
-                    $( "#config_colors_slider" ).slider({
-                      value: ${game.numberOfColors},
-                      min: 2,
-                      max: 7,
-                      step: 1,
-                      slide: function( event, ui ) {
-                        $( "#config_colors" ).val( ui.value );
-                        $( "#config_colors_text" ).text( ui.value );
-                      }
-                    });
-                  } );
-                  $( function() {
-                    $( "#config_pins_slider" ).slider({
-                      value: ${game.numberOfPins},
-                      min: 2,
-                      max: 5,
-                      step: 1,
-                      slide: function( event, ui ) {
-                        $( "#config_pins" ).val( ui.value );
-                        $( "#config_pins_text" ).text( ui.value );
-                      }
-                    });
-                  } );
-                  $( function() {
-                    $( "#config_guesses_slider" ).slider({
-                      value: ${game.maxAttempts},
-                      min: 2,
-                      max: 12,
-                      step: 1,
-                      slide: function( event, ui ) {
-                        $( "#config_guesses" ).val( ui.value );
-                        $( "#config_guesses_text" ).text( ui.value );
-                      }
-                    });
-                  } );
-                  </script>
-                </div>`;
+                `;
         }
     };
 })
