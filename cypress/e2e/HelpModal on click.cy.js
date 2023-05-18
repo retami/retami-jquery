@@ -1,4 +1,5 @@
 describe('Show help modal', () => {
+
     it('Show modal on help button click', () => {
         cy.visit('/');
         cy.get('.help-button').click();

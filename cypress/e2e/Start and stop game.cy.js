@@ -1,4 +1,5 @@
 describe('Start and stop game', () => {
+
     it('Start game on click on start button and stop on quit button', () => {
         cy.visit('/');
 
