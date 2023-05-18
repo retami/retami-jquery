@@ -102,14 +102,22 @@ export default class Board {
                     }
                 }
             }
-            $('.guess-row:first').addClass('current');
         },
 
-        activateNextRow() {
+        enableNextRow() {
             let current = $('.current');
-            current.removeClass('current');
-            current.next().addClass('current');
+            if (current.length === 0) {
+                $('.guess-row:first').addClass('current');
+            } else {
+                current.removeClass('current');
+                current.next().addClass('current');
+            }
             this.enable();
+        },
+
+        disableActiveRow() {
+            this.disable();
+            $('.current').removeClass('current');
         },
 
         getGuess() {
@@ -181,7 +189,7 @@ export default class Board {
     setStatePlaying(secret) {
         this.secretHoles.hide();
         this.guessRow.initRows(this.game.maxAttempts, this.game.numberOfPins);
-        this.guessRow.enable();
+        this.guessRow.enableNextRow();
         this.startButton.hide();
         this.checkButton.disable();
         this.checkButton.show();
@@ -194,7 +202,7 @@ export default class Board {
     }
 
     setStateGameOver() {
-        this.guessRow.disable();
+        this.guessRow.disableActiveRow();
         this.secretHoles.show();
         this.checkButton.disable();
         this.checkButton.hide();

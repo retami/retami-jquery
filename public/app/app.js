@@ -58,7 +58,7 @@ const App = (function () {
             return;
         }
 
-        board.guessRow.activateNextRow();
+        board.guessRow.enableNextRow();
     }
 
     function handleHintClick() {

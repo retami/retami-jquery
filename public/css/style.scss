@@ -59,6 +59,7 @@ body {
 
 .config-button, .help-button, .quit-button, .hint-button, .check-button, .start-button {
   cursor: pointer;
+
   &:hover {
     background-color: rgb(255, 255, 255, 0.15);
   }
@@ -146,6 +147,28 @@ body {
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
+.guess-hole {
+  backdrop-filter: brightness(0.7);
+  cursor: pointer;
+
+  &:hover {
+    backdrop-filter: brightness(0.8);
+  }
+
+  &.disabled {
+    cursor: default;
+
+    &:hover {
+      backdrop-filter: brightness(0.7);
+    }
+  }
+}
+
+.current .guess-hole {
+  border: 1px solid rgba($hint-button-color, 0.7);
+  box-shadow: 0 0 2px 2px rgba($hint-button-color, 0.5);
+}
+
 .feedback-hole {
   width: 20px;
   height: 20px;
@@ -166,23 +189,6 @@ body {
   &.covered {
     background: url('../img/secret.png');
     background-size: contain;
-  }
-}
-
-.guess-hole {
-  backdrop-filter: brightness(0.7);
-  cursor: pointer;
-
-  &:hover {
-    backdrop-filter: brightness(0.8);
-  }
-
-  &.disabled {
-    cursor: default;
-
-    &:hover {
-      backdrop-filter: brightness(0.7);
-    }
   }
 }
 
