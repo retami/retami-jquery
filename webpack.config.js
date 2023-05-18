@@ -2,7 +2,7 @@ const path = require('path');
 const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-    entry: ['./public/index.js', './public/css/style.scss'],
+    entry: ['./src/index.js', './src/css/style.scss'],
     output: {
         filename: 'bundle.js',
         path: path.resolve('.', 'dist'),
@@ -48,8 +48,8 @@ module.exports = {
     plugins: [
         new CopyPlugin({
             patterns: [
-                {from: "public/img", to: 'img'},
-                {from: "public/*.html", to: '[name].html'}
+                {from: "src/img", to: 'img'},
+                {from: "src/*.html", to: '[name].html'}
             ],
         }),
     ],

@@ -8,7 +8,7 @@ Clone of a popular game
 
 Clone the repo and start your server pointing to the public folder, e.g.
 ```
-php -S localhost:8000 -t ./public
+php -S localhost:8000 -t ./dist
 ```
 and open your browser at **http://localhost:8000**
 ### or
