@@ -75,19 +75,19 @@ body {
 #guesses {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 }
 #guesses .guess-holes {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 }
 #guesses .feedback-holes {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   height: 50px;
 }
@@ -169,7 +169,7 @@ body {
   backdrop-filter: brightness(0.7);
 }
 .code-hole.covered {
-  background: url("../img/secret.png");
+  background: url("/img/secret.png");
   background-size: contain;
 }
 

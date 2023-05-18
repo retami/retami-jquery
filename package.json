@@ -2,19 +2,36 @@
   "name": "retami",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "jest",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "build": "webpack --config webpack.config.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^12.8.1"
+    "@babel/preset-env": "^7.21.5",
+    "autoprefixer": "^10.4.14",
+    "babel-loader": "^9.1.2",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.1",
+    "cypress": "^12.8.1",
+    "file-loader": "^6.2.0",
+    "postcss-loader": "^7.3.0",
+    "sass": "^1.57.1",
+    "sass-loader": "^13.2.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.83.1",
+    "webpack-cli": "^5.1.1"
   },
   "dependencies": {
+    "copy-webpack-plugin": "^11.0.0",
     "jquery": "^3.6.4",
     "jquery-ui": "^1.13.2"
-  }
+  },
+  "browserslist": [
+    "defaults"
+  ]
 }
