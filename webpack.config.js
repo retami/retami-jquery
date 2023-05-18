@@ -2,7 +2,7 @@ const path = require('path');
 const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-    entry: ['./src/index.js', './src/css/style.scss'],
+    entry: ['./src/bundle.js', './src/css/style.scss'],
     output: {
         filename: 'bundle.js',
         path: path.resolve('.', 'dist'),
@@ -22,13 +22,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: 'css/style.css',
-                        }
-                    },
+                use: ['style-loader', 'css-loader',
                     {
                         loader: 'postcss-loader',
                         options: {
@@ -39,7 +33,7 @@ module.exports = {
                         }
                     },
                     {
-                        loader: 'sass-loader', options: {sourceMap: true}
+                        loader: 'sass-loader'
                     }
                 ]
             },
@@ -48,7 +42,6 @@ module.exports = {
     plugins: [
         new CopyPlugin({
             patterns: [
-                {from: "src/img", to: 'img'},
                 {from: "src/*.html", to: '[name].html'}
             ],
         }),

@@ -118,8 +118,6 @@ body {
   flex-direction: row;
   justify-content: center;
   padding: 10px 0;
-  -webkit-box-shadow: 0 4px 6px -6px #000;
-  -moz-box-shadow: 0 4px 6px -6px #000;
   box-shadow: 0 4px 6px -6px #000;
 }
 
@@ -169,7 +167,7 @@ body {
   backdrop-filter: brightness(0.7);
 }
 .code-hole.covered {
-  background: url("/img/secret.png");
+  background: url("../img/secret.png");
   background-size: contain;
 }
 
@@ -338,9 +336,9 @@ body {
 }
 #config_dialog #config_colors_slider, #config_dialog #config_pins_slider, #config_dialog #config_guesses_slider {
   -webkit-appearance: none;
-  height: 3px;
-  border: 1px solid #34251b;
-  background-color: #503929;
+  height: 5px;
+  border: 1px solid #483225;
+  background-color: #604532;
   outline: none;
   -webkit-transition: 0.2s;
   transition: opacity 0.2s;

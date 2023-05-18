@@ -3,7 +3,7 @@ describe('Show help modal', () => {
         cy.visit('/');
         cy.get('.help-button').click();
         cy.get('#help-modal').should('exist').should('be.visible').should('contain', 'and');
-        cy.get('.modal-button').click();
+        cy.get('#help-modal').click();
         cy.get('#help-modal').should('not.be.visible');
     });
 });

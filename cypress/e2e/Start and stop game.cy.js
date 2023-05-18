@@ -24,7 +24,7 @@ describe('Start and stop game', () => {
 
         cy.get('#quit-modal').should('exist').should('be.visible');
 
-        cy.get('#quit-modal .modal-button').click();
+        cy.get('#quit-modal').click();
 
         cy.get('#quit-modal').should('not.be.visible');
 
