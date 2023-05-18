@@ -4,7 +4,6 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "jest",
     "cypress:open": "cypress open",
     "build": "webpack --config webpack.config.js"
   },
