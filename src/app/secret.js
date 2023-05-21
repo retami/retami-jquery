@@ -1,26 +1,26 @@
-const Secret = (function () {
-    let code = [];
+const Secret = {
+    code: [],
 
-    function get() {
-        return code;
-    }
+    get: function () {
+        return this.code;
+    },
 
-    function set(code) {
-        code = this.code;
-    }
+    set: function (c) {
+        this.code = c;
+    },
 
-    function generateSecret(colors, numberOfPins) {
-        code = [];
+    generateSecret: function (colors, numberOfPins) {
+        this.code = [];
         for (let i = 0; i < numberOfPins; i++) {
             const randomIndex = Math.floor(Math.random() * colors.length);
-            code.push(colors[randomIndex]);
+            this.code.push(colors[randomIndex]);
         }
-    }
+    },
 
-    function checkGuess(guess) {
+    checkGuess: function (guess) {
         let blackPins = 0;
         let whitePins = 0;
-        const secretCopy = [...code];
+        const secretCopy = [...this.code];
         const guessCopy = [...guess];
 
         // Check for black pins
@@ -46,19 +46,7 @@ const Secret = (function () {
         }
 
         return [blackPins, whitePins];
-    }
-
-    return {
-        get: get, // function () { return get() },
-        set: set,
-        generateSecret: function (colors, numberOfPins) {
-            generateSecret(colors, numberOfPins)
-        },
-        checkGuess: function (guess) {
-            return checkGuess(guess)
-        },
-    };
-})
-();
+    },
+}
 
 export default Secret;
