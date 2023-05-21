@@ -290,22 +290,22 @@ body {
 #config_dialog {
   display: grid;
   align-items: center;
-  grid-template-columns: 80px 30px 220px;
-  grid-template-rows: 3em 3em 3em;
-  grid-column-gap: 0;
+  grid-template-columns: 70px 215px;
+  grid-template-rows: 3em 3em;
+  grid-column-gap: 15px;
   grid-row-gap: 0;
 }
-#config_dialog #config_colors_slider {
+#config_dialog .pref-colors {
   grid-row: 1;
-  grid-column: 3;
+  grid-column: 2;
 }
-#config_dialog #config_pins_slider {
+#config_dialog .pref-pins {
   grid-row: 2;
-  grid-column: 3;
+  grid-column: 2;
 }
-#config_dialog #config_guesses_slider {
+#config_dialog .pref-guesses {
   grid-row: 3;
-  grid-column: 3;
+  grid-column: 2;
 }
 #config_dialog #colors_label {
   grid-row: 1;
@@ -321,39 +321,6 @@ body {
   grid-row: 3;
   grid-column: 1;
   text-align: right;
-}
-#config_dialog #config_colors_text {
-  grid-row: 1;
-  grid-column: 2;
-}
-#config_dialog #config_pins_text {
-  grid-row: 2;
-  grid-column: 2;
-}
-#config_dialog #config_guesses_text {
-  grid-row: 3;
-  grid-column: 2;
-}
-#config_dialog #config_colors_slider, #config_dialog #config_pins_slider, #config_dialog #config_guesses_slider {
-  -webkit-appearance: none;
-  height: 5px;
-  border: 1px solid #483225;
-  background-color: #604532;
-  outline: none;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
-  display: inline-block;
-  width: 180px;
-  margin-left: 20px;
-}
-#config_dialog #config_colors_slider .ui-slider-handle, #config_dialog #config_pins_slider .ui-slider-handle, #config_dialog #config_guesses_slider .ui-slider-handle {
-  width: 15px;
-  height: 15px;
-  background-color: #503929;
-  border: 1px solid #34251b;
-  border-radius: 50%;
-  cursor: pointer;
-  top: -7px;
 }
 
 @media only screen and (max-width: 479px) {
@@ -395,6 +362,40 @@ body {
     transform: translate(-50%, -50%);
     margin: 0;
   }
+}
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin: 15px 0;
+}
+
+.button-row button {
+  flex: 1;
+  margin: 0 1px;
+  max-width: 200px;
+  width: 100%;
+  padding: 3px 5px;
+}
+
+button {
+  background-color: #9b6e50;
+  color: #34251b;
+  border: 1px solid rgba(58, 41, 30, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+  font-size: 1rem;
+  cursor: pointer;
+}
+button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+button[class=selected] {
+  background-color: rgba(58, 41, 30, 0.8);
+  color: #9b6e50;
+  cursor: default;
 }
 
 /*# sourceMappingURL=style.css.map */
