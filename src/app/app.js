@@ -92,4 +92,6 @@ const App = {
     }
 }
 
-export default App;
+export default {
+    run: () => App.run()
+}
