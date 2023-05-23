@@ -89,9 +89,15 @@ const App = {
         this.game.numberOfPins = parseInt($('#config_pins').val());
         this.game.maxAttempts = parseInt($('#config_guesses').val());
         this.board.init(this.game);
+    },
+
+    getSecret() {
+        return this.secret;
     }
 }
 
 export default {
-    run: () => App.run()
+    run: () => App.run(),
+    secret: App.secret,
+    game: App.game
 }
