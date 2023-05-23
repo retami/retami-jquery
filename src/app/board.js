@@ -75,9 +75,9 @@ export default class Board {
             if (!this.toHint()) {
                 return;
             }
-            let candidates = $('.code-hole.covered');
-            let randomIndex = Math.floor(Math.random() * candidates.length);
-            let candidate = candidates.eq(randomIndex);
+            const candidates = $('.code-hole.covered');
+            const randomIndex = Math.floor(Math.random() * candidates.length);
+            const candidate = candidates.eq(randomIndex);
             candidate.css('background-color', candidate.data('color'));
             candidate.removeClass('covered');
         },
@@ -91,9 +91,9 @@ export default class Board {
         initRows(numberOfRows, numberOfPins) {
             $('#guesses').html('');
             for (let i = 0; i < numberOfRows; i++) {
-                let guessRow = $("<div>", {"class": "guess-row"}).appendTo("#guesses");
-                let guessHoles = $("<div>", {"class": "guess-holes"}).appendTo(guessRow);
-                let feedbackHoles = $("<div>", {"class": "feedback-holes"}).appendTo(guessRow);
+                const guessRow = $("<div>", {"class": "guess-row"}).appendTo("#guesses");
+                const guessHoles = $("<div>", {"class": "guess-holes"}).appendTo(guessRow);
+                const feedbackHoles = $("<div>", {"class": "feedback-holes"}).appendTo(guessRow);
                 for (let i = 0; i < numberOfPins; i++) {
                     $("<div>", {"class": "guess-hole"}).appendTo(guessHoles).addClass('disabled');
                     $("<div>", {"class": "feedback-hole"}).appendTo(feedbackHoles);
@@ -106,7 +106,7 @@ export default class Board {
         },
 
         enableNextRow() {
-            let current = $('.current');
+            const current = $('.current');
             if (current.length === 0) {
                 $('.guess-row:first').addClass('current');
             } else {
@@ -171,7 +171,7 @@ export default class Board {
         this.helpButton.bind(() => this.helpModal.show());
     }
 
-    init(game) {
+    init = (game)=> {
         this.game = game;
         Colorpicker.init(this.game.getColors(), () => {
             if (this.guessRow.isFilled()) {
@@ -187,7 +187,7 @@ export default class Board {
         this.secretHoles.init(this.game.numberOfPins);
     }
 
-    setStatePlaying(secret) {
+    setStatePlaying = (secret) => {
         this.secretHoles.hide();
         this.guessRow.initRows(this.game.maxAttempts, this.game.numberOfPins);
         this.guessRow.enableNextRow();
@@ -202,7 +202,7 @@ export default class Board {
         this.secretHoles.set(secret);
     }
 
-    setStateGameOver() {
+    setStateGameOver = () => {
         this.guessRow.disableActiveRow();
         this.secretHoles.show();
         this.checkButton.disable();

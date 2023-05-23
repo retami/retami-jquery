@@ -46,7 +46,7 @@ const App = {
     handleCheckClick: function () {
         const guess = this.board.guessRow.getGuess();
 
-        let [blackPins, whitePins] = this.secret.checkGuess(guess);
+        const [blackPins, whitePins] = this.secret.checkGuess(guess);
         this.board.guessRow.showFeedback(blackPins, whitePins);
         this.board.guessRow.disable();
         this.board.checkButton.disable();
