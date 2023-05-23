@@ -12,7 +12,7 @@ export default {
         </div>`,
 
     show: function () {
-        let modal = $('.modal');
+        const modal = $('.modal');
         modal.html(this.helpHtml);
         modal.css('display', 'block');
         $(document).one('click', function (ev) {

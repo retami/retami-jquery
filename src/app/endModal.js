@@ -21,7 +21,7 @@ export default {
                     </div>`,
 
     won: function (attempts, colors, pins, time) {
-        let modal = $('.modal');
+        const modal = $('.modal');
         modal.html(this.wonHtml);
 
         $('#score_guesses').html(attempts);
@@ -37,7 +37,7 @@ export default {
             </div>`,
 
     lost: function () {
-        let modal = $('.modal');
+        const modal = $('.modal');
         modal.html(this.lostHtml);
         this.showModal(modal);
     },
@@ -47,7 +47,7 @@ export default {
             </div>`,
 
     quit() {
-        let modal = $('.modal');
+        const modal = $('.modal');
         modal.html(this.quitHtml);
         this.showModal(modal);
     },
