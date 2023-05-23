@@ -29,11 +29,7 @@ export default {
         $('#score_pins').html(pins);
         $('#score_time').html(time);
 
-        modal.css('display', 'block');
-        $(document).one('click', function (ev) {
-            modal.css('display', 'none');
-            ev.stopPropagation();
-        });
+        this.showModal(modal);
     },
 
     lostHtml: `<div id="lost-modal">
@@ -43,11 +39,7 @@ export default {
     lost: function () {
         let modal = $('.modal');
         modal.html(this.lostHtml);
-        modal.css('display', 'block');
-        $(document).one('click', function (ev) {
-            modal.css('display', 'none');
-            ev.stopPropagation();
-        });
+        this.showModal(modal);
     },
 
     quitHtml: `<div id="quit-modal">
@@ -57,10 +49,14 @@ export default {
     quit() {
         let modal = $('.modal');
         modal.html(this.quitHtml);
+        this.showModal(modal);
+    },
+
+    showModal(modal) {
         modal.css('display', 'block');
         $(document).one('click', function (ev) {
             modal.css('display', 'none');
             ev.stopPropagation();
         });
-    },
+    }
 }
