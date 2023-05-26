@@ -12,7 +12,7 @@ const App = {
             'rgb(76, 175, 80)',
             'rgb(255, 235, 59)',
             'rgb(121, 85, 72)',
-            'rgb(33, 150, 243)',
+            'rgb(33, 150, 243)', // todo: change colors
         ],
         numberOfColors: 5,
         numberOfPins: 4,
@@ -90,10 +90,6 @@ const App = {
         this.game.maxAttempts = parseInt($('#config_guesses').val());
         this.board.init(this.game);
     },
-
-    getSecret() {
-        return this.secret;
-    }
 }
 
 export default {
