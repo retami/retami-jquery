@@ -10,7 +10,7 @@ Clone the repo and start your server pointing to the **dist** folder, e.g.
 ```
 php -S localhost:80 -t ./dist
 ```
-and open your browser at **http://localhost:8000**
+and open your browser at **http://localhost:80**
 ### or
 
 Just visit [retami.github.io][1]
